@@ -17,7 +17,7 @@ To get started with the liveIT backend, follow these steps:
 `DB_PASSWORD=your_database_password`<br>
 `DB_HOST=your_database_host`<br>
 `DB_PORT=your_database_port`<br>
-`DB_NAME=your_database_name`<br>`
+`DB_NAME=your_database_name`<br>
 
 
 Replace `your_database_username`, `your_database_password`, `your_database_host`, `your_database_port`, and `your_database_name` with your PostgreSQL database credentials.

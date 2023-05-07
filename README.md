@@ -1,5 +1,8 @@
 # liveIT Backend
 
+[Snackalog Pasaoa Cephus Trello Board](https://trello.com/b/xvZFasjG/snackalog-pasaoa-cephus)
+
+
 This is the backend for the liveIT app. It's built with Express.js and connects to a PostgreSQL database to store user data and app information.
 
 ## Getting Started

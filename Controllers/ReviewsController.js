@@ -11,24 +11,19 @@ const {
 } = require("../queries/reviews");
 const { get } = require("../app.js");
 
-
+//INDEX - get all reviews
 review.get("/", async (req, res) => {
-  const { bookmarkId } = req.params;
-  (bookmarkId);
-  try{
-    const allReviews = await getAllReviews(bookmarkId);
+  const { snackId } = req.params;
+  (snackId);
+  try {
+    const allReviews = await getAllReviews(snackId);
     res.json(allReviews)
   } catch (err) {
     res.json(err)
   }
-  // if (allReviews[0]) {
-  //   res.status(200).json(allReviews);
-  // } else {
-  //   res.status(500).json({ error: "server error" });
-  // }
 });
 
-
+//SHOW - single review
 review.get("/:id", async (req, res) => {
   const { id } = req.params;
   const review = await getReview(id);
@@ -39,7 +34,7 @@ review.get("/:id", async (req, res) => {
   }
 });
 
-// UPDATE
+// UPDATE - previously done review
 review.put("/:id", async (req, res) => {
   const { id } = req.params;
   const updatedReview = await updateReview(id, req.body);
@@ -50,7 +45,8 @@ review.put("/:id", async (req, res) => {
   }
 });
 
-review.post("/", async (req, res) => {
+// CREATE - New Review
+review.post("/:id", async (req, res) => {
   const review = await newReview(req.body);
   res.status(200).json(review);
 });
@@ -67,12 +63,4 @@ review.delete("/:id", async (req, res) => {
   }
 });
 
-// TEST JSON NEW
-// {
-//     "reviewer":"Lou",
-//      "title": "Fryin Better",
-//      "content": "With the great tips and tricks I found here",
-//      "bookmark_id": "2",
-//      "rating": "4"
-// }
 module.exports = review;

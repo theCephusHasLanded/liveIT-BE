@@ -1,5 +1,8 @@
 # liveIT Backend
 
+[Snackalog Pasaoa Cephus Trello Board](https://trello.com/b/xvZFasjG/snackalog-pasaoa-cephus)
+
+
 This is the backend for the liveIT app. It's built with Express.js and connects to a PostgreSQL database to store user data and app information.
 
 ## Getting Started
@@ -10,11 +13,11 @@ To get started with the liveIT backend, follow these steps:
 2. Install the dependencies by running `npm install`.
 3. Create a `.env` file in the root directory and add the following environment variables:
 
-DB_USERNAME=your_database_username
-DB_PASSWORD=your_database_password
-DB_HOST=your_database_host
-DB_PORT=your_database_port
-DB_NAME=your_database_name
+`DB_USERNAME=your_database_username`<br>
+`DB_PASSWORD=your_database_password`<br>
+`DB_HOST=your_database_host`<br>
+`DB_PORT=your_database_port`<br>
+`DB_NAME=your_database_name`<br>
 
 
 Replace `your_database_username`, `your_database_password`, `your_database_host`, `your_database_port`, and `your_database_name` with your PostgreSQL database credentials.

@@ -8,7 +8,7 @@
     "pg-promise": "^11.4.3"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "name": "liveit-be",
   "description": "[Snackalog Pasaoa Cephus Trello Board](https://trello.com/b/xvZFasjG/snackalog-pasaoa-cephus)",

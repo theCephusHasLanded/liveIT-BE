@@ -6,5 +6,24 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
     "pg-promise": "^11.4.3"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "liveit-be",
+  "description": "[Snackalog Pasaoa Cephus Trello Board](https://trello.com/b/xvZFasjG/snackalog-pasaoa-cephus)",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theCephusHasLanded/liveIT-BE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theCephusHasLanded/liveIT-BE/issues"
+  },
+  "homepage": "https://github.com/theCephusHasLanded/liveIT-BE#readme"
 }

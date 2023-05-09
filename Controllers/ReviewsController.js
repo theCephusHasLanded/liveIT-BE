@@ -12,6 +12,9 @@ const {
 } = require("../queries/reviews");
 //const { get } = require("../app.js");
 
+//All reviews for one snack
+snacks.use("/:snackId/reviews", reviewsController)
+
 //INDEX - get all reviews
 review.get("/", async (req, res) => {
   const { snackId } = req.params;

@@ -8,7 +8,7 @@ const { getAllsnacks, getASnack, createSnack, deleteSnack, updateSnack } = requi
 snacks.get("/", async (req, res) => {
   const allsnacks = await getAllsnacks();
 
-  if (allsnacks) {
+  if (allsnacks[0]) {
     res.status(200).json(allsnacks);
   } else {
     res.status(500).json({ error: "Server Error" });
@@ -19,7 +19,6 @@ snacks.get("/", async (req, res) => {
 snacks.get("/:id", async (req, res) => {
   const { id } = req.params;
   const snack = await getASnack(id);
-
 
   if (snack) {
     res.status(200).json(snack);
@@ -56,8 +55,8 @@ snacks.delete("/:id", async (req, res) => {
 
   try {
     const deletedSnack = await deleteSnack(id);
-    if(deletedSnack.id){
-       res.status(200).json(deletedSnack);
+    if (deletedSnack.id) {
+      res.status(200).json(deletedSnack);
     } else {
       throw new Error("A snack with that Id does not exist")
     }

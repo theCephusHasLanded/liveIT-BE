@@ -10,6 +10,17 @@ const getAllReviews = async (id) => {
   }
 };
 
+//SHOW - single review
+const getReview = async (id) => {
+  try {
+    const oneReview = await db.one("SELECT * FROM snacks WHERE id=$1", id);
+    return oneReview;
+  } catch (error) {
+    return error;
+  }
+};
+
+
 
 module.exports = { 
   getAllReviews, 

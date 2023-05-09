@@ -11,6 +11,7 @@ app.use(cors());
 
 // /snacks is the base url endpoint for the routes
 // middleware
+//const snacksController = require("./controllers/SnacksController.js");
 app.use("/snacks", snacksController);
 
 

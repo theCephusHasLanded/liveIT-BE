@@ -7,6 +7,9 @@ CREATE DATABASE snacks_dev;
 -- Connect to DB
 \c snacks_dev;
 
+-- always drop the table if it exists
+DROP TABLE IF EXISTS snacks;
+
 -- Create a table for our snacks
 CREATE TABLE snacks (
   id SERIAL PRIMARY KEY,

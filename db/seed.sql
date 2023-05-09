@@ -16,7 +16,7 @@ VALUES
   ('Hot Dog with Bun', 310, 5, 18, false),
   ('Chili Cheese Fries', 1010, 5, 65, false),
   ('Milkshake', 520, 60, 21, false),
-  ('Deep Fried Oreos', 312, 19, 13, false);
+  ('Deep Fried Oreos', 312, 19, 13, false),
   ('Apple', 95, 19, 0, true),
   ('Banana', 105, 14, 0, true),
   ('Carrot Sticks', 30, 6, 0, true),
@@ -50,8 +50,8 @@ VALUES
 ('Harry', 'Classic ballpark snack', 'A hot dog with bun is a classic snack at sporting events, and this one is just as good as any Ive had before. The bun is soft and the hot dog is juicy.', 3, 12),
 ('Lisa', 'Decadent and delicious', 'These chili cheese fries are a bit of a guilty pleasure for me, but they are so worth it. The fries are crispy and the chili and cheese toppings are rich and flavorful.', 5, 13),
 ('Michael', 'Indulgent treat', 'A milkshake is a delicious and indulgent treat, and this one is no exception. Its creamy and sweet, with just the right amount of thickness.', 4, 14),
-('Emma', 'Sinfully good', 'Deep fried Oreos are a bit of a guilty pleasure for me, but they are so worth it. They are warm and crispy on the outside, with a gooey chocolate center. Definitely not a healthy snack, but sometimes you just have to indulge!', 5, 15)
-('Jane', 'Love these apples!', 'I love how fresh and crisp these apples are. They are the perfect snack to satisfy my sweet tooth without making me feel guilty.', 5, 16),
+('Emma', 'Sinfully good', 'Deep fried Oreos are a bit of a guilty pleasure for me, but they are so worth it. They are warm and crispy on the outside, with a gooey chocolate center. Definitely not a healthy snack, but sometimes you just have to indulge!', 5, 15),
+('Janet', 'Love these apples!', 'I love how fresh and crisp these apples are. They are the perfect snack to satisfy my sweet tooth without making me feel guilty.', 5, 16),
 ('John', 'Great healthy snack', 'I always keep bananas on hand for a quick and easy snack. They are high in potassium and help keep me full for a long time.', 5, 17),
 ('Samantha', 'Perfect for a midday snack', 'These carrot sticks are so convenient for when I need a quick and healthy snack. They are crunchy and satisfying without being too filling.', 4, 18),
 ('Robert', 'A bit bland', 'I found these celery sticks to be a bit bland on their own, but they were great when paired with some peanut butter for added flavor and protein.', 3, 19),

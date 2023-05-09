@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors")
-const snacksController = require('./Controllers/SnacksController')
+const snacksController = require('./controllers/SnacksController.js')
 // const { validateURL } = require('./validations/checkSnacks.js')
 
 

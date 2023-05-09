@@ -8,6 +8,8 @@
     "pg-promise": "^11.4.3"
   },
   "scripts": {
+    "db:init": "psql -U postgres -f db/schema.sql",
+    "db:seed": "psql -U postgres -f db/seed.sql",
     "start": "nodemon server.js"
   },
   "name": "liveit-be",

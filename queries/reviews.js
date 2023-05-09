@@ -1,7 +1,7 @@
 const db = require("../db/dbConfig.js");
 
 //INDEX - get all reviews
-const getAllReviews = async () => {
+const getAllReviews = async (snackId) => {
   try {
     const allReviews = await db.any("SELECT * FROM reviews");
     return allReviews;

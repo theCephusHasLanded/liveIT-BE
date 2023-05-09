@@ -8,11 +8,11 @@ const { getAllSnacks, getASnack, createSnack, deleteSnack, updateSnack } = requi
 snacks.get("/", async (req, res) => {
   const allSnacks = await getAllSnacks();
 
-  if (allSnacks[0]) {
+  // if (allSnacks[0]) {
     res.status(200).json(allSnacks);
-  } else {
-    res.status(500).json({ error: "Server Error" });
-  }
+  // } else {
+  //   res.status(500).json({ error: "Server Error" });
+  // }
 });
 
 //GET ONE ROUTE

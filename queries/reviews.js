@@ -20,6 +20,20 @@ const getReview = async (id) => {
   }
 };
 
+//Update - previously done review needs changes
+const updateReview = async (id, review) => {
+  const { reviewer, title, content, rating, snack_id } = review;
+  try {
+    const updatedReview = await db.one(
+      "UPDATE reviews SET reviewer=$1, title=$2, content=$3, rating=$4 snack_id=$5 WHERE id=$6 RETURNING *",
+      [review.reviewer, review.title, review.content, review.rating, review.snack_id, id]
+    );
+    return updatedReview;
+  } catch (error) {
+    return error;
+  }
+};
+
 // CREATE - New Review
 const newReview = async (review) => {
   try {
@@ -35,10 +49,11 @@ const newReview = async (review) => {
 
 
 
-module.exports = { 
-  getAllReviews, 
-  newReview, 
-  getReview, 
-  deleteReview, 
-  updateReview 
+
+module.exports = {
+  getAllReviews,
+  newReview,
+  getReview,
+  deleteReview,
+  updateReview
 };

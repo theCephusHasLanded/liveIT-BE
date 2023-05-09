@@ -21,13 +21,13 @@ const getReview = async (id) => {
 };
 
 // CREATE - New Review
-const newReview = async (review) => {
+const createReview = async (review) => {
   try {
-    const newReview = await db.one(
+    const createReview = await db.one(
       "INSERT INTO reviews (reviewer, title, content, rating, snack_id) VALUES($1, $2, $3, $4, $5) RETURNING *",
       [review.reviewer, review.title, review.content, review.rating, review.snack_id]
     );
-    return newReview;
+    return createReview;
   } catch (error) {
     return error;
   }
@@ -63,7 +63,7 @@ const deleteReview = async (id) => {
 
 module.exports = {
   getAllReviews,
-  newReview,
+  createReview,
   getReview,
   deleteReview,
   updateReview

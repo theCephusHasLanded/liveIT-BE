@@ -1,12 +1,12 @@
 const express = require("express");
-const review = express.Router({ mergeParams: true });
+const reviews = express.Router({ mergeParams: true });
 
 //const { getASnack } = require("../queries/snacks.js");
 
 const {
   getAllReviews,
   getReview,
-  newReview,
+  createReview,
   deleteReview,
   updateReview,
 } = require("../queries/reviews");
@@ -16,7 +16,7 @@ const {
 snacks.use("/:snackId/reviews", reviewsController)
 
 //INDEX - get all reviews
-review.get("/", async (req, res) => {
+reviews.get("/", async (req, res) => {
   const { snackId } = req.params;
   //(snackId);
   try {
@@ -28,7 +28,7 @@ review.get("/", async (req, res) => {
 });
 
 //SHOW - single review
-review.get("/:id", async (req, res) => {
+reviews.get("/:id", async (req, res) => {
   const { id } = req.params;
   const review = await getReview(id);
   if (review) {
@@ -39,9 +39,9 @@ review.get("/:id", async (req, res) => {
 });
 
 // CREATE - New Review
-review.post("/", async (req, res) => {
+reviews.post("/", async (req, res) => {
   try {
-  const review = await newReview(req.body);
+  const review = await createReview(req.body);
   res.status(200).json(review);
   } catch (error) {
     res.status(400).json({ error: error })
@@ -49,7 +49,7 @@ review.post("/", async (req, res) => {
 });
 
 // DELETE
-review.delete("/:id", async (req, res) => {
+reviews.delete("/:id", async (req, res) => {
   const { id } = req.params;
   const deletedReview = await deleteReview(id);
   if (deletedReview.id) {
@@ -60,7 +60,7 @@ review.delete("/:id", async (req, res) => {
 });
 
 // UPDATE - previously done review
-review.put("/:id", async (req, res) => {
+reviews.put("/:id", async (req, res) => {
   const { id } = req.params;
   const updatedReview = await updateReview(id, req.body);
   if (updatedReview.id) {
@@ -70,4 +70,4 @@ review.put("/:id", async (req, res) => {
   }
 });
 
-module.exports = review;
+module.exports = reviews;

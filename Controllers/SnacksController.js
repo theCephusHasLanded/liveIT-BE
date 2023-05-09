@@ -4,6 +4,9 @@ const { getAllSnacks, getASnack, createSnack, deleteSnack, updateSnack } = requi
 // const { checkRequest } = require("../validations/checksnacks");
 // const { checkRequest, checkId } = require('../validations/checksnacks')
 
+//For Reviews
+snacks.use("/:snackId/reviews", reviewsController)
+
 //GET ROUTE
 snacks.get("/", async (req, res) => {
   const allSnacks = await getAllSnacks();

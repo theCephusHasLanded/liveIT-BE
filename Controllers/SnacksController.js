@@ -6,10 +6,10 @@ const { getAllsnacks, getASnack, createSnack, deleteSnack, updateSnack } = requi
 
 //GET ROUTE
 snacks.get("/", async (req, res) => {
-  const allsnacks = await getAllsnacks();
+  const allSnacks = await getAllSnacks();
 
-  if (allsnacks[0]) {
-    res.status(200).json(allsnacks);
+  if (allSnacks[0]) {
+    res.status(200).json(allSnacks);
   } else {
     res.status(500).json({ error: "Server Error" });
   }

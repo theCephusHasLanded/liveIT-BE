@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors")
 const snacksController = require('./controllers/SnacksController.js')
+const reviewsController = require('./controllers/ReviewsController.js')
 // const { validateURL } = require('./validations/checkSnacks.js')
 
 
@@ -13,6 +14,7 @@ app.use(cors());
 // middleware
 //const snacksController = require("./controllers/SnacksController.js");
 app.use("/snacks", snacksController);
+app.use("/reviews", reviewsController);
 
 
 app.get("/", (_, res) => {

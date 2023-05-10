@@ -10,10 +10,16 @@ const getAllReviews = async (snackId) => {
   }
 };
 
-//get all reviews for one snack
-const getAllReviewsForOneSnack = async (id) => {
-  console.log("HI")
-}//select all reviews and grab snack_id not primary id
+// //get all reviews for one snack
+// const getAllReviewsForOneSnack = async (id) => {
+//   try {
+//     const allReviews = await db.any("SELECT * FROM reviews WHERE snack_id=$1", id);
+//     return allReviews;
+//   } catch (error) {
+//     return error;
+//   }
+// };
+
 
 //SHOW - single review
 const getReview = async (id) => {
@@ -72,7 +78,7 @@ const deleteReview = async (id) => {
   try {
     const deletedReview = await db.one(
       "DELETE FROM reviews WHERE id = $1 RETURNING *",
-      id
+      [id]
     );
     return deletedReview;
   } catch (error) {
@@ -82,8 +88,9 @@ const deleteReview = async (id) => {
 
 module.exports = {
   getAllReviews,
-  createReview,
   getReview,
+  createReview,
+  updateReview,
   deleteReview,
-  updateReview
+  
 };

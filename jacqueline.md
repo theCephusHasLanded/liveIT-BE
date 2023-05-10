@@ -1,0 +1,2 @@
+- Cookies are my favorite snack.
+- One of my favorite music artists to listen to is Frank Sinatra.

@@ -39,15 +39,13 @@ snacks.get("/:id", async (req, res) => {
 snacks.post("/", async (req, res) => {
   const newSnack = req.body;
 
-  if (!newSnack.title) {
+  if (!newSnack.name) {
     res.status(400).json({ error: "Name is missing" });
-  } else if (!newSnack.artist) {
-    res.status(400).json({ error: "Artist is missing" });
-  } else if (
-    newSnack.is_favorite !== undefined &&
-    typeof newSnack.is_favorite !== "boolean"
-  ) {
-    res.status(400).json({ error: "is_favorite must be a boolean" });
+
+  } else if (!newSnack.calorie) {
+    res.status(400).json({ error: "Calorie is missing" });
+  } else if (newSnack.is_healthy !== undefined && typeof newSnack.is_healthy !== "boolean") {
+    res.status(400).json({ error: "is_healthy must be a boolean" });
   } else {
     try {
       const addedSnack = await createSnack(newSnack);
@@ -79,14 +77,9 @@ snacks.put("/:id", async (req, res) => {
   const { id } = req.params;
   const snackToUpdate = req.body;
 
-  if (
-    !snackToUpdate.name &&
-    !snackToUpdate.artist &&
-    snackToUpdate.is_favorite === undefined
-  ) {
-    res
-      .status(400)
-      .json({ error: "At least one field is required to update a snack" });
+
+  if (!snackToUpdate.name && !snackToUpdate.calorie && snackToUpdate.is_healthy === undefined) {
+    res.status(400).json({ error: "At least one field is required to update a snack" });
     return;
   }
 

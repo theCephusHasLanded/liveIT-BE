@@ -1,4 +1,4 @@
-const { getSnack } = require("../queries/snacks.js");
+const { getASnack } = require("../queries/snacks.js");
 const review = require("express").Router({ mergeParams: true });
 const {
   getAllReviews,

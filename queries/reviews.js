@@ -10,10 +10,7 @@ const getAllReviews = async (snackId) => {
   }
 };
 
-
 //get all reviews for one snack
-
-
 //const getAllReviewsForOneSnack = async (id) => {
   //console.log("HI") }
 //select all reviews and grab snack_id not primary id
@@ -33,13 +30,7 @@ const createReview = async (review) => {
   try {
     const newReview = await db.one(
       "INSERT INTO reviews (reviewer, title, content, rating, snack_id) VALUES($1, $2, $3, $4, $5) RETURNING *",
-      [
-        review.reviewer, 
-        review.title, 
-        review.content, 
-        review.rating, 
-        review.snack_id,
-      ]
+      [review.reviewer, review.title, review.content, review.rating, review.snack_id]
     );
     return newReview;
   } catch (error) {
@@ -52,14 +43,7 @@ const updateReview = async (id, review) => {
   try {
     const updatedReview = await db.one(
       "UPDATE reviews SET reviewer=$1, title=$2, content=$3, rating=$4, snack_id=$5 WHERE id=$6 RETURNING *",
-      [
-        review.reviewer, 
-        review.title, 
-        review.content, 
-        review.rating, 
-        review.snack_id,
-        id
-      ]
+      [review.reviewer, review.title, review.content, review.rating, review.snack_id, id]
     );
     return updatedReview;
   } catch (error) {
@@ -88,7 +72,7 @@ const deleteReview = async (id) => {
   try {
     const deletedReview = await db.one(
       "DELETE FROM reviews WHERE id = $1 RETURNING *",
-      [id]
+      id
     );
     return deletedReview;
   } catch (error) {
@@ -98,9 +82,8 @@ const deleteReview = async (id) => {
 
 module.exports = {
   getAllReviews,
-  getReview,
   createReview,
-  updateReview,
+  getReview,
   deleteReview,
+  updateReview
 };
-

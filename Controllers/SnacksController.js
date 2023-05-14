@@ -7,9 +7,11 @@ const {
   deleteSnack,
   updateSnack,
 } = require("../queries/snacks");
+const { checkName, checkBoolean } = require("../validations/checkSnacks");
+
 const reviewsController = require("./ReviewsController.js");
 snacks.use("/:snackId/reviews", reviewsController)
-// const { checkRequest } = require("../validations/checksnacks");
+
 // const { checkRequest, checkId } = require('../validations/checksnacks')
 
 //GET ROUTE
@@ -36,16 +38,16 @@ snacks.get("/:id", async (req, res) => {
 });
 
 //CREATE ROUTE
-snacks.post("/", async (req, res) => {
+snacks.post("/", checkName, checkBoolean, async (req, res) => {
   const newSnack = req.body;
+  // if (!newSnack.name) {
+  //   res.status(400).json({ error: "Name is missing" });
+  // } else 
 
-  if (!newSnack.name) {
-    res.status(400).json({ error: "Name is missing" });
-
-  } else if (!newSnack.calorie) {
+  if (!newSnack.calorie) {
     res.status(400).json({ error: "Calorie is missing" });
-  } else if (newSnack.is_healthy !== undefined && typeof newSnack.is_healthy !== "boolean") {
-    res.status(400).json({ error: "is_healthy must be a boolean" });
+  // } else if (newSnack.is_healthy !== undefined && typeof newSnack.is_healthy !== "boolean") {
+  //   res.status(400).json({ error: "is_healthy must be a boolean" });
   } else {
     try {
       const addedSnack = await createSnack(newSnack);
@@ -73,7 +75,7 @@ snacks.delete("/:id", async (req, res) => {
 });
 
 //UPDATE ROUTE
-snacks.put("/:id", async (req, res) => {
+snacks.put("/:id", checkName, checkBoolean, async (req, res) => {
   const { id } = req.params;
   const snackToUpdate = req.body;
 

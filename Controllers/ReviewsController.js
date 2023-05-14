@@ -7,6 +7,7 @@ const {
   deleteReview,
   updateReview,
 } = require("../queries/reviews.js");
+const { checkTitle } = require('../validations/checkReviews.js');
 
 review.get("/", async (req, res) => {
   const { snackId } = req.params;
@@ -29,19 +30,20 @@ review.get("/:id", async (req, res) => {
 });
 
 // UPDATE
-review.put("/:id", async (req, res) => {
+review.put("/:id", checkTitle, async (req, res) => {
   const { id } = req.params;
   const updatedReview = await updateReview(id, req.body);
   if (updatedReview.id) {
     res.status(200).json(updatedReview);
   } else {
-    res.status(404).json("Review not found");
+    res.status(404).json({ error: "At least one field is required to update a Review" });
   }
 });
 
-review.post("/", async (req, res) => {
+//CREATE
+review.post("/", checkTitle, async (req, res) => {
   const review = await newReview(req.body);
-  res.status(200).json(review);
+  res.status(200).json({ error: "Failed to create new Review" });
 });
 
 // DELETE

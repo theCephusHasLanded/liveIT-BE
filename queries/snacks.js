@@ -22,16 +22,16 @@ const getASnack = async (id) => {
 
 
 //CREATE ONE
-const createSnack = async (snackToAdd) => {
+const createSnack = async (snackToUpdate) => {
   try {
     const newSnack = await db.one(
       "INSERT INTO snacks (name, calorie, sugar, fat, is_healthy) VALUES ($1, $2, $3, $4, $5)  RETURNING *",
       [
-        snackToAdd.name,
-        snackToAdd.calorie,
-        snackToAdd.sugar,
-        snackToAdd.fat,
-        snackToAdd.is_healthy,
+        snackToUpdate.name,
+        snackToUpdate.calorie,
+        snackToUpdate.sugar,
+        snackToUpdate.fat,
+        snackToUpdate.is_healthy,
       ]
     );
     return newSnack;
@@ -46,11 +46,11 @@ const updateSnack = async (id, snackToUpdate) => {
     const updatedSnack = await db.one(
         "UPDATE snacks SET name=$1, calorie=$2, sugar=$3, fat=$4, is_healthy=$5 WHERE id=$6 RETURNING *",
         [
-        snackToAdd.name,
-        snackToAdd.calorie,
-        snackToAdd.sugar,
-        snackToAdd.fat,
-        snackToAdd.is_healthy,
+        snackToUpdate.name,
+        snackToUpdate.calorie,
+        snackToUpdate.sugar,
+        snackToUpdate.fat,
+        snackToUpdate.is_healthy,
         id
       ]
     );

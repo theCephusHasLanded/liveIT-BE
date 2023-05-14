@@ -1,7 +1,17 @@
 const express = require("express");
 const snacks = express.Router();
-const { getAllSnacks, getASnack, createSnack, deleteSnack, updateSnack } = require("../queries/snacks");
-// const { checkRequest } = require("../validations/checksnacks");
+const {
+  getAllSnacks,
+  getASnack,
+  createSnack,
+  deleteSnack,
+  updateSnack,
+} = require("../queries/snacks");
+const { checkName, checkBoolean } = require("../validations/checkSnacks");
+
+const reviewsController = require("./ReviewsController.js");
+snacks.use("/:snackId/reviews", reviewsController)
+
 // const { checkRequest, checkId } = require('../validations/checksnacks')
 
 //GET ROUTE
@@ -9,7 +19,7 @@ snacks.get("/", async (req, res) => {
   const allSnacks = await getAllSnacks();
 
   // if (allSnacks[0]) {
-    res.status(200).json(allSnacks);
+  res.status(200).json(allSnacks);
   // } else {
   //   res.status(500).json({ error: "Server Error" });
   // }
@@ -27,18 +37,17 @@ snacks.get("/:id", async (req, res) => {
   }
 });
 
-
-
 //CREATE ROUTE
-snacks.post("/", async (req, res) => {
+snacks.post("/", checkName, checkBoolean, async (req, res) => {
   const newSnack = req.body;
+  // if (!newSnack.name) {
+  //   res.status(400).json({ error: "Name is missing" });
+  // } else 
 
-  if (!newSnack.title) {
-    res.status(400).json({ error: "Name is missing" });
-  } else if (!newSnack.artist) {
-    res.status(400).json({ error: "Artist is missing" });
-  } else if (newSnack.is_favorite !== undefined && typeof newSnack.is_favorite !== "boolean") {
-    res.status(400).json({ error: "is_favorite must be a boolean" });
+  if (!newSnack.calorie) {
+    res.status(400).json({ error: "Calorie is missing" });
+  // } else if (newSnack.is_healthy !== undefined && typeof newSnack.is_healthy !== "boolean") {
+  //   res.status(400).json({ error: "is_healthy must be a boolean" });
   } else {
     try {
       const addedSnack = await createSnack(newSnack);
@@ -58,7 +67,7 @@ snacks.delete("/:id", async (req, res) => {
     if (deletedSnack.id) {
       res.status(200).json(deletedSnack);
     } else {
-      throw new Error("A snack with that Id does not exist")
+      throw new Error("A snack with that Id does not exist");
     }
   } catch (error) {
     res.status(404).json({ error: error });
@@ -66,11 +75,12 @@ snacks.delete("/:id", async (req, res) => {
 });
 
 //UPDATE ROUTE
-snacks.put("/:id", async (req, res) => {
+snacks.put("/:id", checkName, checkBoolean, async (req, res) => {
   const { id } = req.params;
   const snackToUpdate = req.body;
 
-  if (!snackToUpdate.name && !snackToUpdate.artist && snackToUpdate.is_favorite === undefined) {
+
+  if (!snackToUpdate.name && !snackToUpdate.calorie && snackToUpdate.is_healthy === undefined) {
     res.status(400).json({ error: "At least one field is required to update a snack" });
     return;
   }

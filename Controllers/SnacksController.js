@@ -7,22 +7,15 @@ const {
   deleteSnack,
   updateSnack,
 } = require("../queries/snacks");
-const { checkName, checkBoolean } = require("../validations/checkSnacks");
+const { checkName} = require("../validations/checkSnacks");
 
 const reviewsController = require("./ReviewsController.js");
-snacks.use("/:snackId/reviews", reviewsController)
-
-// const { checkRequest, checkId } = require('../validations/checksnacks')
+snacks.use("/:snackId/reviews", reviewsController);
 
 //GET ROUTE
 snacks.get("/", async (req, res) => {
   const allSnacks = await getAllSnacks();
-
-  // if (allSnacks[0]) {
   res.status(200).json(allSnacks);
-  // } else {
-  //   res.status(500).json({ error: "Server Error" });
-  // }
 });
 
 //GET ONE ROUTE
@@ -38,16 +31,11 @@ snacks.get("/:id", async (req, res) => {
 });
 
 //CREATE ROUTE
-snacks.post("/", checkName, checkBoolean, async (req, res) => {
+snacks.post("/", checkName, async (req, res) => {
   const newSnack = req.body;
-  // if (!newSnack.name) {
-  //   res.status(400).json({ error: "Name is missing" });
-  // } else 
 
   if (!newSnack.calorie) {
     res.status(400).json({ error: "Calorie is missing" });
-  // } else if (newSnack.is_healthy !== undefined && typeof newSnack.is_healthy !== "boolean") {
-  //   res.status(400).json({ error: "is_healthy must be a boolean" });
   } else {
     try {
       const addedSnack = await createSnack(newSnack);
@@ -75,21 +63,32 @@ snacks.delete("/:id", async (req, res) => {
 });
 
 //UPDATE ROUTE
-snacks.put("/:id", checkName, checkBoolean, async (req, res) => {
+snacks.put("/:id", checkName, async (req, res) => {
   const { id } = req.params;
   const snackToUpdate = req.body;
-
-
-  if (!snackToUpdate.name && !snackToUpdate.calorie && snackToUpdate.is_healthy === undefined) {
-    res.status(400).json({ error: "At least one field is required to update a snack" });
-    return;
-  }
-
+  console.log(id, req.body)
   try {
+    const existingSnack = await getASnack(id);
+
+    if (!existingSnack) {
+      res.status(404).json({ error: "Snack not found" });
+      return;
+    }
+
+    // Check if any changes were made to the snack object
+    const isModified = Object.keys(snackToUpdate).some(
+      (key) => snackToUpdate[key] !== existingSnack[key]
+    );
+
+    if (!isModified) {
+      res.status(400).json({ error: "No changes detected in the snack object" });
+      return;
+    }
+
     const updatedSnack = await updateSnack(id, snackToUpdate);
     res.status(200).json(updatedSnack);
   } catch (error) {
-    res.status(400).json({ error: error });
+    res.status(400).json({ error: error.message });
   }
 });
 

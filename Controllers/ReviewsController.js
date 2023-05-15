@@ -49,7 +49,7 @@ review.post("/add/snack/:snackId", async (req, res) => {
 //TODO: add checkTitle back
 
 // DELETE
-review.delete("/:id", async (req, res) => {
+review.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
 
   const deletedReview = await deleteReview(id);

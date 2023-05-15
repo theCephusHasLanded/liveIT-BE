@@ -9,9 +9,6 @@ const {
 } = require("../queries/snacks");
 const { checkName} = require("../validations/checkSnacks");
 
-const reviewsController = require("./ReviewsController.js");
-snacks.use("/:snackId/reviews", reviewsController);
-
 //GET ROUTE
 snacks.get("/", async (req, res) => {
   const allSnacks = await getAllSnacks();

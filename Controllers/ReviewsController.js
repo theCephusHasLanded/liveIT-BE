@@ -3,13 +3,13 @@ const review = require("express").Router({ mergeParams: true });
 const {
   getAllReviews,
   getReview,
-  newReview,
+  createReview,
   deleteReview,
   updateReview,
 } = require("../queries/reviews.js");
-const { checkTitle } = require('../validations/checkReviews.js');
+// const { checkTitle } = require('../validations/checkReviews.js');
 
-review.get("/", async (req, res) => {
+review.get("/snack/:snackId", async (req, res) => {
   const { snackId } = req.params;
   try{
     const allReviews = await getAllReviews(snackId);
@@ -30,7 +30,7 @@ review.get("/:id", async (req, res) => {
 });
 
 // UPDATE
-review.put("/:id", checkTitle, async (req, res) => {
+review.put("/:id", async (req, res) => {
   const { id } = req.params;
   const updatedReview = await updateReview(id, req.body);
   if (updatedReview.id) {
@@ -39,15 +39,17 @@ review.put("/:id", checkTitle, async (req, res) => {
     res.status(404).json({ error: "At least one field is required to update a Review" });
   }
 });
+//TODO: add checkTitle
 
 //CREATE
-review.post("/", checkTitle, async (req, res) => {
-  const review = await newReview(req.body);
-  res.status(200).json({ error: "Failed to create new Review" });
+review.post("/add/snack/:snackId", async (req, res) => {
+  const review = await createReview(req.body);
+  res.status(200).json(review);
 });
+//TODO: add checkTitle back
 
 // DELETE
-review.delete("/:id", async (req, res) => {
+review.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
 
   const deletedReview = await deleteReview(id);

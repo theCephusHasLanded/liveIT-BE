@@ -9,7 +9,6 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.use("/snacks/:snackId/reviews", reviewsController); // updated route for reviews
 app.use("/snacks", snacksController);
 app.use("/reviews", reviewsController);
 

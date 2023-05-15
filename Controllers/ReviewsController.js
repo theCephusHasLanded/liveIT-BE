@@ -9,7 +9,7 @@ const {
 } = require("../queries/reviews.js");
 // const { checkTitle } = require('../validations/checkReviews.js');
 
-review.get("/", async (req, res) => {
+review.get("/snack/:snackId", async (req, res) => {
   const { snackId } = req.params;
   try{
     const allReviews = await getAllReviews(snackId);
@@ -30,7 +30,7 @@ review.get("/:id", async (req, res) => {
 });
 
 // UPDATE
-review.put("/:id", checkTitle, async (req, res) => {
+review.put("/:id", async (req, res) => {
   const { id } = req.params;
   const updatedReview = await updateReview(id, req.body);
   if (updatedReview.id) {

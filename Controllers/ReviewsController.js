@@ -3,7 +3,7 @@ const review = require("express").Router({ mergeParams: true });
 const {
   getAllReviews,
   getReview,
-  newReview,
+  createReview,
   deleteReview,
   updateReview,
 } = require("../queries/reviews.js");
@@ -41,9 +41,9 @@ review.put("/:id", checkTitle, async (req, res) => {
 });
 
 //CREATE
-review.post("/", checkTitle, async (req, res) => {
-  const review = await newReview(req.body);
-  res.status(200).json({ error: "Failed to create new Review" });
+review.post("/add/snack/:snackId", async (req, res) => {
+  const review = await createReview(req.body);
+  res.status(200).json(review);
 });
 
 // DELETE

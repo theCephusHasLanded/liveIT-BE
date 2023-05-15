@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const snacksController = require("./controllers/SnacksController.js");
-const reviewsController = require("./controllers/ReviewsController.js");
+const path = require('path');  // Add this line
+
+// Update the require paths
+const snacksController = require(path.join(__dirname, './controllers/SnacksController.js'));
+const reviewsController = require(path.join(__dirname, './controllers/ReviewsController.js'));
 
 // Middleware
 app.use(express.json());

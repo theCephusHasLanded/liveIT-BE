@@ -7,7 +7,7 @@ const {
   deleteReview,
   updateReview,
 } = require("../queries/reviews.js");
-const { checkTitle } = require('../validations/checkReviews.js');
+// const { checkTitle } = require('../validations/checkReviews.js');
 
 review.get("/", async (req, res) => {
   const { snackId } = req.params;
@@ -39,12 +39,14 @@ review.put("/:id", checkTitle, async (req, res) => {
     res.status(404).json({ error: "At least one field is required to update a Review" });
   }
 });
+//TODO: add checkTitle
 
 //CREATE
 review.post("/add/snack/:snackId", async (req, res) => {
   const review = await createReview(req.body);
   res.status(200).json(review);
 });
+//TODO: add checkTitle back
 
 // DELETE
 review.delete("/:id", async (req, res) => {

@@ -7,17 +7,17 @@ const checkName = (req, res, next) => {
   }
 };
 
-// const checkBoolean = (req, res, next) => {
-//   const { is_healthy } = req.body;
-//   if (
-//     is_healthy == "true" ||
-//     is_healthy == "false" ||
-//     is_healthy == undefined
-//   ) {
-//     next();
-//   } else {
-//     res.status(400).json({ error: "is_healthy must be a boolean value" });
-//   }
-// };
+const checkBoolean = (req, res, next) => {
+  const { is_healthy } = req.body;
+  if (
+    is_healthy == "true" ||
+    is_healthy == "false" ||
+    is_healthy == undefined
+  ) {
+    next();
+  } else {
+    res.status(400).json({ error: "is_healthy must be a boolean value" });
+  }
+};
 
 module.exports = { checkName };

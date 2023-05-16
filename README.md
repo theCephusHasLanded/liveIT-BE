@@ -48,4 +48,5 @@ Contributions to the liveIT backend are welcome! To contribute, please follow th
 
 ## License
 
-The liveIT backend is licensed under the MIT License. See the LICENSE file for more information. 
+The liveIT backend was created by Christina Ann Cephus
+Founder of LokeyHiTech News

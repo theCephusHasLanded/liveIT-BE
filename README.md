@@ -48,5 +48,9 @@ Contributions to the liveIT backend are welcome! To contribute, please follow th
 
 ## License
 
+Pursuit 9.4 Fellow Contributors:
 The liveIT backend was created by Christina Ann Cephus
 Founder of LokeyHiTech News
+
+This Repository recieved contributions from Jacqueline Pasaoa
+A Technical Explorer from NYC

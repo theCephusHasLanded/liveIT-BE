@@ -10,7 +10,7 @@
   "scripts": {
     "db:init": "psql -U postgres -f db/schema.sql",
     "db:seed": "psql -U postgres -f db/seed.sql",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "name": "liveit-be",
   "description": "[Snackalog Pasaoa Cephus Trello Board](https://trello.com/b/xvZFasjG/snackalog-pasaoa-cephus)",

@@ -1,9 +1,0 @@
-services:
-- type: web
-  name: liveIT-BE
-  env: node
-  buildCommand: npm install
-  startCommand: npm start
-  github:
-    repo: theCephusHasLanded/liveIT-BE
-    branch: main

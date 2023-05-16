@@ -2,5 +2,3 @@ node_modules
 .env
 .DS_store
 
-# Ignore case sensitivity
-*.[Cc][Aa][Ss][Ee]
